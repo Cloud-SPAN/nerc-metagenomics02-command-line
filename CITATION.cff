@@ -1,0 +1,45 @@
+cff-version: 1.1.0
+message: "If you reuse this training material, please cite it as below."
+authors:
+- family-names: "Buenabad-Chavez"
+  given-names: "Jorge"
+- family-names: "Cansdale"
+  given-names: "Annabel"
+  orcid: "https://orcid.org/0000-0001-9548-3110"
+- family-names: "Chong"
+  given-names: "James"
+  orcid: "https://orcid.org/0000-0001-9447-7421"
+- family-names: "Forrester"
+  given-names: "Sarah"
+  orcid: "https://orcid.org/0000-0001-8332-7196"
+- family-names: "Greeves"
+  given-names: "Evelyn"
+  orcid: "https://orcid.org/0000-0003-4800-3422"
+- family-names: "Rand"
+  given-names: "Emma"
+  orcid: "https://orcid.org/0000-0002-1358-8275"
+title: "Cloud-SPAN Prenomics Course: Using the command line"
+version: 0.1.0
+doi: 10.5281/10.5281/zenodo.6354062
+date-released: 2022-03-01
+url: "https://cloud-span.github.io/prenomics02-command-line/"
+references:
+  - authors:
+    - family-names: "Becker"
+      given-names: "Erin Alison"
+    - family-names: "Teal"
+      given-names: "Tracy"
+    - family-names: "Michonneau"
+      given-names: "Francois"
+    - family-names: "Schurch"
+      given-names: "Anita"
+    - family-names: "McKay"
+      given-names: "Sheldon John"
+    - family-names: "Mizzi"
+      given-names: "Jessica Elizabeth"
+    date-released: "2019-06-01"
+    doi: 10.5281/zenodo.3260560
+    repository-code: "https://github.com/datacarpentry/shell-genomics/"
+    title: "Data Carpentry:  Introduction to the shell for genomics data"
+    type: software
+    version: v2019.06.1
