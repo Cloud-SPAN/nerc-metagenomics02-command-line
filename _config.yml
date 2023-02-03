@@ -6,7 +6,7 @@
 carpentry: "dc"
 
 # Overall title for pages.
-title: "Using the command line"
+title: "Using the Command Line"
 
 # Contact.  This *must* include the protocol: if it's an email
 # address, it must look like "mailto:lessons@software-carpentry.org",
@@ -78,7 +78,7 @@ exclude:
 # Turn off built-in syntax highlighting.
 highlighter: rouge
 
-remote_theme: Cloud-SPAN/cloud-span-prenomics-theme
+remote_theme: Cloud-SPAN/nerc-metagenomics-theme
 
 # Google analytics
 google_analytics: G-P9V56KX6X1
