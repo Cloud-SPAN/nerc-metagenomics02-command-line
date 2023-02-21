@@ -20,20 +20,19 @@ keypoints:
 
 ### Our data set: FASTQ files
 
-Now that we know how to navigate around our directory structure, let's
-start working with our sequencing files. We did a sequencing experiment and
-have two results files, which are stored in our `untrimmed_fastq` directory.
+Now that we know how to navigate around our directory structure, let's start working with our sequencing files. 
+We are looking at the results from a short-read sequencing experiment, which are stored in our `illumina_fastq` directory.
 
 ### Wildcards
 
-Navigate to your `untrimmed_fastq` directory:
+Navigate to your `illumina_fastq` directory:
 
 ~~~
-$ cd ~/shell_data/untrimmed_fastq
+$ cd ~/cs_course/data/illumina_fastq
 ~~~
 {: .bash}
 
-We are interested in looking at the FASTQ files in this directory. We can list
+We are interested in looking at the fastq files in this directory. We can list
 all files with the .fastq extension using the command:
 
 ~~~
@@ -42,7 +41,7 @@ $ ls *.fastq
 {: .bash}
 
 ~~~
-SRR097977.fastq  SRR098026.fastq
+ERR4998593_1.fastq  ERR4998593_2.fastq
 ~~~
 {: .output}
 
@@ -52,16 +51,16 @@ Thus, `*.fastq` matches every file that ends with `.fastq`.
 This command:
 
 ~~~
-$ ls *977.fastq
+$ ls *_2.fastq
 ~~~
 {: .bash}
 
 ~~~
-SRR097977.fastq
+ERR4998593_2.fastq
 ~~~
 {: .output}
 
-lists only the file that ends with `977.fastq`.
+lists only the file that ends with `_2.fastq`.
 
 This command:
 
@@ -94,8 +93,6 @@ each result starts with `/`.
 > Hint: Question 4 requires a Unix wildcard that we haven't talked about
 > yet. Try searching the internet for information about Unix wildcards to find
 > what you need to solve the bonus problem.
-> 
-> Share your answers in the forum.
 >
 > > ## Solution
 > > 1. `ls /usr/bin/c*`
@@ -158,53 +155,7 @@ For more information on advanced usage of `history`, read section 9.3 of
 We now know how to switch directories, run programs, and look at the
 contents of directories, but how do we look at the contents of files?
 
-One way to examine a file is to print out all of the
-contents using the program `cat`.
-
-Enter the following command from within the `untrimmed_fastq` directory:
-
-~~~
-$ cat SRR098026.fastq
-~~~
-{: .bash}
-
-This will print out all of the contents of the `SRR098026.fastq` to the screen.
-
-> ## Reminder
-> The contents might look a bit confusing. As these are `.fastq` files, they use the FASTQ format we have discussed previously. Here is a reminder to keep in mind as we continue to examine these files:
-> ![](../fig/fasta_file_format_l2.png){:width="600px"}
-{: .callout}
-
-
-
-> ## Exercise
->
-> 1. Print out the contents of the `~/shell_data/untrimmed_fastq/SRR097977.fastq` file. What is the last line of the file?
-> 2.  From your home directory, and without changing directories,
-> use one short command to print the contents of all of the files in
-> the `~/shell_data/untrimmed_fastq` directory.
->
-> Share your answers on the forum.
->
-> > ## Solution
-> > 1. The last line of the file is `C:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$`.
-> > 2. `cat ~/shell_data/untrimmed_fastq/*`
-> {: .solution}
-{: .challenge}
-
-`cat` is a terrific program, but when the file is really big, it can
-be annoying to use. The program, `less`, is useful for this
-case. `less` opens the file as read only, and lets you navigate through it. The navigation commands
-are identical to the `man` program.
-
-Enter the following command:
-
-~~~
-$ less SRR097977.fastq
-~~~
-{: .bash}
-
-Some navigation commands in `less`:
+One way to examine a file is to open the file in a read-only format and navigate through it using a program called `less`. The commands for navigating `less` are the same as the `man` program:
 
 | key     | action |
 | ------- | ---------- |
@@ -214,82 +165,111 @@ Some navigation commands in `less`:
 |  <kbd>G</kbd>    | to go to the end |
 |  <kbd>q</kbd>    | to quit |
 
-`less` also gives you a way of searching through files. Use the
-"/" key to begin a search. Enter the word you would like
-to search for and press `enter`. The screen will jump to the next location where
-that word is found.
+Enter the following command from within the `illumina_fastq` directory:
 
-**Shortcut:** If you hit "/" then "enter", `less` will  repeat
-the previous search. `less` searches from the current location and
-works its way forward. Scroll up a couple lines on your terminal to verify
-you are at the beginning of the file. Note, if you are at the end of the file and search
-for the sequence "CAA", `less` will not find it. You either need to go to the
-beginning of the file (by typing `g`) and search again using `/` or you
-can use `?` to search backwards in the same way you used `/` previously.
+~~~
+$ cd ~/cs_course/data/illumina_fastq
+$ less ERR4998593_1.fastq
+~~~
+{: .bash}
+
+> ## Reminder
+> The contents might look a bit confusing. That's because they are in FASTQ format, a popular way to store sequencing data in text-based format.
+> These files contain both sequences and information about each sequence's read accuracy.
+>
+> ![](../fig/fasta_file_format_l2.png){:width="600px"}
+>
+> Each sequence is described in four lines:
+> |Line|Description|
+> |----|-----------|
+> |1|Always begins with '@' and gives the sequence identifier and an optional description|
+> |2|The actual DNA sequence|
+> |3|Always begins with a '+' and sometimes the same info in line 1|
+> |4|Has a string of characters which represent the PHRED quality score for each of the bases in line 2; must have same number of characters as line 2|
+>
+{: .callout}
+
+> ## Exercise
+>
+> 1. Open the `~/cs_course/data/illumina_fastq/ERR4998593_1.fastq` file in `less`. What is the last line of the file? (Hint: use the shortcuts above to speed things up)
+>
+> > ## Solution
+> > 1. The last line of the file is `FFFFFFFF,FFFFF:FFFFFFFFFF:FFFFFF:FF:FFFFFFF:FFFFFFFFFFFFFFFFFFFF,FF:FFFF:FFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF::FFFFFFFFF:FFFFFF`
+> > {: .solution}
+>
+{: .challenge}
+
+### Some navigation commands in `less`:
+
+`less` also gives you a way of searching through files. Use the "/" key to begin a search. 
+Enter the word you would like to search for and press `enter`. 
+The screen will jump to the next location where that word is found.
+
+**Shortcut:** If you hit "/" then "enter", `less` will  repeat the previous search.
+`less` searches from the current location and works its way forward. Scroll up a couple lines on your terminal to verify you are at the beginning of the file. 
+Note, if you are at the end of the file and search for the sequence "CAA", `less` will not find it. 
+You either need to go to the beginning of the file (by typing `g`) and search again using `/` or you can use `?` to search backwards in the same way you used `/` previously.
 
 For instance, let's search forward for the sequence `TTTTT` in our file.
-You can see that we go right to that sequence, what it looks like,
-and where it is in the file. If you continue to type `/` and hit return, you will move
-forward to the next instance of this sequence motif. If you instead type `?` and hit
-return, you will search backwards and move up the file to previous examples of this motif.
+You can see that we go right to that sequence, what it looks like, and where it is in the file. If you continue to type `/` and hit return, you will move
+forward to the next instance of this sequence motif. If you instead type `?` and hit return, you will search backwards and move up the file to previous examples of this motif.
 
 > ## Exercise
 >
 > What are the next three nucleotides (characters) after the first instance of the sequence quoted above (`TTTTT`)?
 >
-> Share your answer on the forum to see if it matches everyone else's!
+> Share your answer to o see if it matches everyone else's!
 >
 > > ## Solution
-> > `CAC`
+> > `CAG`
 > {: .solution}
 {: .challenge}
 
-Remember, the `man` program actually uses `less` internally and
-therefore uses the same commands, so you can search documentation
-using "/" as well!
+Remember, the `man` program actually uses `less` internally and therefore uses the same commands, so you can search documentation using "/" as well!
 
-There's another way that we can look at files, and in this case, just
-look at part of them. This can be particularly useful if we just want
+Another way to look at files using the command `cat`. This command prints out the entire contents of the file to the console. In large files, like the ones we're working with today, this can take a long time and should generally be avoided. For small files, it can be a useful tool.
+
+There's another final way that we can look at files, and in this case, just look at part of them. This can be particularly useful if we just want
 to see the beginning or end of the file, or see how it's formatted.
 
-The commands are `head` and `tail` and they let you look at
-the beginning and end of a file, respectively.
+The commands are `head` and `tail` and they let you look at the beginning and end of a file, respectively.
 
 ~~~
-$ head SRR098026.fastq
+$ head ERR4998593_1.fastq
 ~~~
 {: .bash}
 
 ~~~
-@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-NNNNNNNNNNNNNNNNCNNNNNNNNNNNNNNNNNN
-+SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
-@SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
-NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
-+SRR098026.2 HWUSI-EAS1599_1:2:1:0:312 length=35
-!!!!!!!!!!!!!!!!#!!!!!!!!!!!!!!!!!!
-@SRR098026.3 HWUSI-EAS1599_1:2:1:0:570 length=35
-NNNNNNNNNNNNNNNNANNNNNNNNNNNNNNNNNN
+CNGTTGTTGAAATCGATCGTGTAGGTGCTGTTGGTAGCGGCCGCCCCTCCGTACGACGGCGAGCCGCCAGCCTTCAGAATCAGACCCGGGCCGATCATCACCGCAACTCCCGCGATGCTGAACTGGTCGTCTCCGCGAAAGCCCGCGCTGG
++ERR4998593.1 1 length=151
+F#FFFF::FFFFFFFFFF,FFFFFFF::FFFF:FFF::,FFF:FFFFFF,F:FFFFFFFFFFFFFFFFF:FF:FFF:FF:FF,FFFF::FFF:FFFFFFFFFFFFFFFFFFFFFF::F,,FFFF:FFFFF:FFFFFFFFFF,FF,F:FF,F
+@ERR4998593.2 2 length=151
+CNCCATACGGCTTCGGCCGTGCGCTGGTCGACGCCGCCGGTACGGTGATCCAGGAGCTGAGCCCCGGCCTGACGGCCCGCCGCCCGGGCTGCCACGTCCGGCTCATCCCGAAGGATCGCGAGAAGATCGGCGTCTGGCTCCTCATCCTCGA
++ERR4998593.2 2 length=151
+F#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+@ERR4998593.3 3 length=151
+GNGGTGCTCGACGGTGGCTCGGCGGATGCGCATGGCGTCGGGCCTGCGGTCCAGCCGCTCCCGCATGGCGTCGATCACCGCCTCATGCTCCCAGCGTTTGATGCGGCGCTCCTTGCCGCTCGTACACCGGCTCTTCAGCGGGCAGCCGGCG
+
 ~~~
 {: .output}
 
 ~~~
-$ tail SRR098026.fastq
+$ tail ERR4998593_1.fastq
 ~~~
 {: .bash}
 
 ~~~
-+SRR098026.247 HWUSI-EAS1599_1:2:1:2:1311 length=35
-#!##!#################!!!!!!!######
-@SRR098026.248 HWUSI-EAS1599_1:2:1:2:118 length=35
-GNTGNGGTCATCATACGCGCCCNNNNNNNGGCATG
-+SRR098026.248 HWUSI-EAS1599_1:2:1:2:118 length=35
-B!;?!A=5922:##########!!!!!!!######
-@SRR098026.249 HWUSI-EAS1599_1:2:1:2:1057 length=35
-CNCTNTATGCGTACGGCAGTGANNNNNNNGGAGAT
-+SRR098026.249 HWUSI-EAS1599_1:2:1:2:1057 length=35
-A!@B!BBB@ABAB#########!!!!!!!######
++ERR4998593.68527218 68527218 length=151
+FF,F,FFF:FFF:FFFF:FFFFFFFFFF:FFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFF:FFFFF:FFFFFFFFFFFFFFFFFFFF:FFF,FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF::
+@ERR4998593.68527219 68527219 length=151
+GATTATGTGTTTCATTGTTATATGTATCAAAAATAGATTCCTATAATAATATTTAAAATGAATAATAGAAATGAGATGATTGAATTTCTTACTTTTTGTAAAAAAGCTGATGGAATTCATGTAAGAATAAAATCATCCTTTAATCATCTTC
++ERR4998593.68527219 68527219 length=151
+FF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFF:FF:FFFFFF::F:FFFFFFFFFFFFFF:::FFFFFFFFFFF,FFFFFFFF:FFFF
+@ERR4998593.68527220 68527220 length=151
+GCCTAGTAAAACGCGTCGCTCGCGTTTGTGGAGTGATGGCCGAAGGGCAGCAGCAGCGACTCCTACGATCGATGGATTTCCAGCAGAAGAAGAACCTCATGCTTCACAACTCAATAAGCTTGATTTGTAGCGCATCAAGGCGCTACTCTTA
++ERR4998593.68527220 68527220 length=151
+FFFFFFFF,FFFFF:FFFFFFFFFF:FFFFFF:FF:FFFFFFF:FFFFFFFFFFFFFFFFFFFF,FF:FFFF:FFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF::FFFFFFFFF:FFFFFF
+
 ~~~
 {: .output}
 
