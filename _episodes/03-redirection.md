@@ -43,33 +43,31 @@ We'll search for strings inside of our fastq files. Let's first make sure we are
 directory:
 
 ~~~
-$ cd ~/shell_data/untrimmed_fastq
+$ cd ~/cs_course/data/illumina_fastq
 ~~~
 {: .bash}
 
-Suppose we want to see how many reads in our file have really bad segments containing 10 consecutive unknown nucleotides (Ns).
+However, suppose we want to see how many reads in our file have bad segments containing three or more unclassified nucleotides (N) in a row.
 
 > ## Determining quality
 >
-> In this lesson, we're going to be manually searching for strings of `N`s within our sequence
+> In this lesson, we're going to be manually searching for strings of bases within our sequence
 > results to illustrate some principles of file searching. It can be really useful to do this
 > type of searching to get a feel for the quality of your sequencing results, however, in your
 > research you will most likely use a bioinformatics tool that has a built-in program for
 > filtering out low-quality reads. You'll learn how to use one such tool in
-> [a Genomics lesson](https://cloud-span.github.io/03genomics/01-quality-control/index.html).
+> [a later lesson](https://cloud-span.github.io/nerc-metagenomics03-qc-assembly/02-QC-quality-raw-reads/index.html).
 >
 {: .callout}
 
-Let's search for the string NNNNNNNNNN in the SRR098026 file:
+Let's search for the string NNN in the ERR4998593_1 file:
 ~~~
-$ grep NNNNNNNNNN SRR098026.fastq
+$ grep NNN ERR4998593_1.fastq
 ~~~
 {: .bash}
 
-This command returns a lot of output to the terminal. Every single line in the SRR098026
-file that contains at least 10 consecutive Ns is printed to the terminal, regardless of how long or short the file is.
-We may be interested not only in the actual sequence which contains this string, but
-in the name (or identifier) of that sequence. Think back to the FASTQ format we discussed previously - if you need a reminder, you can click to reveal one below.
+This command returns quite a lot of output to the terminal. Every single line in the ERR4998593_1 file that contains at least 3 consecutive Ns is printed to the terminal, regardless of how long or short the file is.
+We may be interested not only in the actual sequence which contains this string, but in the name (or identifier) of that sequence. Think back to the FASTQ format we discussed previously - if you need a reminder, you can click to reveal one below.
 
 >
 > > ## Hint
@@ -77,74 +75,63 @@ in the name (or identifier) of that sequence. Think back to the FASTQ format we 
 > {: .solution}
 {: .challenge}
 
-To get all of the information about this read, we will return the line
-immediately before each match and the two lines immediately after each match.
+To get all of the information about each read, we will return the line immediately before each match and the two lines immediately after each match.
 
-We can use the `-B` argument for grep to return a specific number of lines before
-each match. The `-A` argument returns a specific number of lines after each matching line. Here we want the line *before* and the two lines *after* each
-matching line, so we add `-B1 -A2` to our grep command:
+We can use the `-B` argument for grep to return a specific number of lines before each match. The `-A` argument returns a specific number of lines after each matching line. Here we want the line *before* and the two lines *after* each matching line, so we add `-B1 -A2` to our grep command:
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
+$ grep -B1 -A2 NNN ERR4998593_1.fastq
 ~~~
 {: .bash}
 
 One of the sets of lines returned by this command is:
 
 ~~~
-@SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-+SRR098026.177 HWUSI-EAS1599_1:2:1:1:2025 length=35
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+@ERR4998593.16431295 16431295 length=151
+TTCGCCCGCCCTTGAATCCACGATNCCNTNCNAATNNNCGATCGGTGGANNACCNTGAATTCCAAATGCAAAATNAGGGCGGAGGGAAAAGAGGCATATTNCGTGCTTATGTCTCTTAATGAGCGGCCCTCTCCGCTGATCTAGCCAAGCC
++ERR4998593.16431295 16431295 length=151
+FFFFFFFFFFFFFFFFFFFFFFFF#FF#F#F#FFF###FFFFFFFFFFF##,FF#FFFFFFFFFFFFFFFF,FF#FFFFFFF,FFFFFFF:F:FFFFFFF#FFFFFFFFFFFFFFFFFFFFF,FFFFFFFFFFFF:FFFFFFFFFFFF,FF
 ~~~
 {: .output}
 
 > ## Exercise
 >
-> 1. Search for the sequence `GNATNACCACTTCC` in the `SRR098026.fastq` file.
+> 1. Search for the sequence `GATACCACTTCCAGT` in the `ERR4998593_1.fastq` file.
 > Have your search return all matching lines and the name (or identifier) for each sequence
 > that contains a match. What is the output?
 >
-> 2. Search for the sequence `AAGTT` in both FASTQ files.
+> 2. Search for the sequence `AACCGGTTAACCGGTT` in both FASTQ files.
 > Have your search return all matching lines and the name (or identifier) for each sequence
-> that contains a match. How many matching sequences do you get?
->
-> Share your answers on the forum.
+> that contains a match. How many matching sequences do you get? (this may take up to 4 minutes to complete so be patient!)
 >
 > > ## Solution  
-> > 1. `grep -B1 GNATNACCACTTCC SRR098026.fastq`
+> > 1. `grep -B1 GATACCACTTCCAGT ERR4998593_1.fastq`
 > >
 > >     ```
-> >     @SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
-> >     GNATNACCACTTCCAGTGCTGANNNNNNNGGGATG
+> >     @ERR4998593.10526179 10526179 length=151
+> > GGTTAGTCAAGGGGGGAAACGATTTTTTTATAAGAATTTTCAGTGGCAAGTGATACCACTTCCAGTTTGTAATTGCGCCATTTGAGAATCAGTTTAGGCGTTGGAGTTACGGTTGTCGCTTTCCCCCTCACCCCGCCCACACCCTTGGGGA
+> > --
+> > @ERR4998593.46113465 46113465 length=151
+> > GACCGGATGAGATACCACTTCCAGTCTGAGCCGGCACAGGGTGCACAGCGAAAGTCGCGCTTAGGACGAAAGCGGCGAATCCGCGTGAAACAGTGGTTCCCATGTCTTGTGCCTCAGTCCAGACTCATCGGCATCCGGACGATGAAGTTCG
 > >     ```
 > >
-> > 2. `grep -B1 AAGTT *.fastq`
+> > 2. `grep -B1 AACCGGTTAACCGGTT *.fastq`
 > >
 > >     ```
-> > SRR097977.fastq-@SRR097977.11 209DTAAXX_Lenski2_1_7:8:3:247:351 length=36
-> > SRR097977.fastq:GATTGCTTTAATGAAAAAGTCATATAAGTTGCCATG
+> > ERR4998593_1.fastq-@ERR4998593.52741374 52741374 length=151
+> > ERR4998593_1.fastq:GACAAGCTCATCTTCCAAAATCCGCAACGGTTTTTAAGCCAGTGCCCGAAATTTAGATTAACCGATTAACCGGTTAACCGGTTCGTAGGAGACGGGTAACGAGACTCTAACTCAAGTTTCGCATACTACCACCAAAACAGCCCGTCCGCGT
 > > --
-> > SRR097977.fastq-@SRR097977.67 209DTAAXX_Lenski2_1_7:8:3:544:566 length=36
-> > SRR097977.fastq:TTGTCCACGCTTTTCTATGTAAAGTTTATTTGCTTT
+> > ERR4998593_1.fastq-@ERR4998593.64616570 64616570 length=151
+> > ERR4998593_1.fastq:GACAAGCTCATCTTCCAAAATCCGCAACGGTTTTTAAGCCAGTGCCCGAAATTTAGATTAACCGATTAACCGGTTAACCGGTTCGTAGGAGACGGGTAACGAGACTCTAACTCAAGTTTCGCATACTACCACCAAAACAGCCCGTCCGCGT
+--
+> > ERR4998593_1.fastq-@ERR4998593.64617528 64617528 length=151
+> > ERR4998593_1.fastq:GACAAGCTCATCTTCCAAAATCCGCAACGGTTTTTAAGCCAGTGCCCGAAATTTAGATTAACCGATTAACCGGTTAACCGGTTCGTAGGAGACGGGTAACGAGACTCTAACTCAAGTTTCGCATACTACCACCAAAACAGCCCGTCCGCGT
 > > --
-> > SRR097977.fastq-@SRR097977.68 209DTAAXX_Lenski2_1_7:8:3:724:110 length=36
-> > SRR097977.fastq:TGAAGCCTGCTTTTTTATACTAAGTTTGCATTATAA
+> > ERR4998593_2.fastq-@ERR4998593.2096117 2096117 length=151
+> > ERR4998593_2.fastq:ATTGGCTGGCGGCAGTCGCGTTGGCGGCTTGGCGGTTAACCGGTTAACCGGTTGACTAATGGGAGGATAACACTTCGCGACAGGAACGCAACACAATTCCGGATCAATAGGGCAACTGCCCTGGGATGGTTTTTGAGGTGGACACGGACCA
 > > --
-> > SRR097977.fastq-@SRR097977.80 209DTAAXX_Lenski2_1_7:8:3:258:281 length=36
-> > SRR097977.fastq:GTGGCGCTGCTGCATAAGTTGGGTTATCAGGTCGTT
-> > --
-> > SRR097977.fastq-@SRR097977.92 209DTAAXX_Lenski2_1_7:8:3:353:318 length=36
-> > SRR097977.fastq:GGCAAAATGGTCCTCCAGCCAGGCCAGAAGCAAGTT
-> > --
-> > SRR097977.fastq-@SRR097977.139 209DTAAXX_Lenski2_1_7:8:3:703:655 length=36
-> > SRR097977.fastq:TTTATTTGTAAAGTTTTGTTGAAATAAGGGTTGTAA
-> > --
-> > SRR097977.fastq-@SRR097977.238 209DTAAXX_Lenski2_1_7:8:3:592:919 length=36
-> > SRR097977.fastq:TTCTTACCATCCTGAAGTTTTTTCATCTTCCCTGAT
-> > --
-> > SRR098026.fastq-@SRR098026.158 HWUSI-EAS1599_1:2:1:1:1505 length=35
-> > SRR098026.fastq:GNNNNNNNNCAAAGTTGATCNNNNNNNNNTGTGCG
+> > ERR4998593_2.fastq-@ERR4998593.11478972 11478972 length=151
+> > ERR4998593_2.fastq:GAACAGGGCTGTTAGTTAACCGGTCAAAGCCGCCTTAACCGGTTAACCGGTTGTAACGCCCCGCTATGCTCGTTGTGTCCGCTATCTCTGTGATTGTGTTTGTTTCGGTGTTTGCTTCGGTTTGCCGTTTGTCTATGCCGAGAAGTGGAGG
 > >     ```
 > >
 > {: .solution}
@@ -153,23 +140,17 @@ CNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 ## Redirecting output
 
 `grep` allowed us to identify sequences in our FASTQ files that match a particular pattern.
-All of these sequences were printed to our terminal screen, but in order to work with these
-sequences and perform other operations on them, we will need to capture that output in some
-way.
+All of these sequences were printed to our terminal screen, but in order to work with these sequences and perform other operations on them, we will need to capture that output in some way.
 
-We can do this with something called "redirection". The idea is that
-we are taking what would ordinarily be printed to the terminal screen and redirecting it to another location.
-In our case, we want to print this information to a file so that we can look at it later and
-use other commands to analyse this data.
+We can do this with something called "redirection". The idea is that we are taking what would ordinarily be printed to the terminal screen and redirecting it to another location.
+In our case, we want to print this information to a file so that we can look at it later and use other commands to analyse this data.
 
 The command for redirecting output to a file is `>`.
 
-Let's try out this command and copy all the records (including all four lines of each record)
-in our FASTQ files that contain
-'NNNNNNNNNN' to another file called `bad_reads.txt`.
+Let's try out this command and copy all the records (including all four lines of each record) in our FASTQ files that contain 'NNN' to another file called `bad_reads.txt`. The new flag `--no-group-separator` stops grep from putting a dashed line (--) between matches. The reason this is necessary will become apparent shortly.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq > bad_reads.txt
 ~~~
 {: .bash}
 
@@ -184,31 +165,23 @@ $ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
 >
 {: .callout}
 
-
 The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should see a new file called `bad_reads.txt`.
 
-We can check the number of lines in our new file using a command called `wc`.
-`wc` stands for **word count**. This command counts the number of words, lines, and characters
-in a file. The FASTQ file may change over time, so given the potential for updates,
-make sure your file matches your instructor's output.
+We can check the number of lines in our new file using a command called `wc`. `wc` stands for **word count**. This command counts the number of words, lines, and characters in a file. The FASTQ file may change over time, so given the potential for updates, make sure your file matches your instructor's output.
 
-As of Nov. 2021, wc gives the following output:  
-
-
-
+As of February 2023, wc gives the following output:  
 ~~~
 $ wc bad_reads.txt
 ~~~
 {: .bash}
 
 ~~~
-  537    1073    23217    bad_reads.txt
+96  192  9264  bad_reads.txt
 ~~~
 {: .output}
 
-This will tell us the number of lines, words and characters in the file. If we
-want only the number of lines, we can use the `-l` flag for `lines`.
+This will tell us the number of lines, words and characters in the file. If we want only the number of lines, we can use the `-l` flag for `lines`.
 
 ~~~
 $ wc -l bad_reads.txt
@@ -216,40 +189,42 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-537  bad_reads.txt
+96 bad_reads.txt
 ~~~
 {: .output}
+
+The `--no-group-separator` flag used above prevents grep from adding unnecessary extra lines to the file which would alter the number of lines present.
 
 > ## Exercise
 >
 > Try these questions on your own first. Then, if you are attending an instructor-led workshop, discuss your answers in your breakout room. Nominate someone from your group to feed back on the forum.
 >
-> 1. How many sequences are there in `SRR098026.fastq`? Remember that every sequence is formed by four lines.
-> 2. How many sequences in `SRR098026.fastq` contain at least 3 consecutive Ns?
+> 1. How many sequences are there in `ERR4998593_1.fastq`? Remember that every sequence is formed by four lines.
+> 2. How many sequences in `ERR4998593_1.fastq` contain at least 5 consecutive Ns?
 >
 > > ## Solution
 > >
 > >1.
 > > ~~~
-> > $ wc -l SRR098026.fastq
+> > $ wc -l ERR4998593_1.fastq
 > > ~~~
 > > {: .bash}
 > >
 > > ~~~
-> > 996
+> > 274108880 ERR4998593_1.fastq
 > > ~~~
-> > Now you can divide this number by four to get the number of sequences in your fastq file
+> > Now you can divide this number by four to get the number of sequences in your fastq file (68527220).
 > > {: .output}
 > >
 > > 2.
 > > ~~~
-> > $ grep NNN SRR098026.fastq > bad_reads.txt
+> > $ grep NNNNN ERR4998593_1.fastq > bad_reads.txt
 > > $ wc -l bad_reads.txt
 > > ~~~
 > > {: .bash}
 > >
 > > ~~~
-> > 249
+> > 4 bad_reads.txt
 > > ~~~
 > > {: .output}
 > {: .solution}
@@ -262,18 +237,18 @@ This is called "overwriting" and, just like you don't want to overwrite your vid
 of your kid's first birthday party, you also want to avoid overwriting your data files.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+96 bad_reads.txt
 ~~~
 {: .output}
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq > bad_reads.txt
+$ grep -B1 -A2 NNNNNNNNNN --no-group-separator ERR4998593_1.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
@@ -283,59 +258,40 @@ $ wc -l bad_reads.txt
 ~~~
 {: .output}
 
-Here, the output of our second  call to `wc` shows that we no longer have any lines in our `bad_reads.txt` file. This is
-because the second file we searched (`SRR097977.fastq`) does not contain any lines that match our
-search sequence. So our file was overwritten and is now empty.
+Here, the output of our second  call to `wc` shows that we no longer have any lines in our `bad_reads.txt` file. This is because the second string we searched (`NNNNNNNNNN`) does not match any strings in the file. So our file was overwritten and is now empty.
 
 We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will
 append new output to the end of a file, rather than overwriting it.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq > bad_reads.txt
+$ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq > bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+96 bad_reads.txt
 ~~~
 {: .output}
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR097977.fastq >> bad_reads.txt
+$ grep -B1 -A2 NNNNNNNNNN --no-group-separator ERR4998593_1.fastq >> bad_reads.txt
 $ wc -l bad_reads.txt
 ~~~
 {: .bash}
 
 ~~~
-537 bad_reads.txt
+96 bad_reads.txt
 ~~~
 {: .output}
 
 The output of our second call to `wc` shows that we have not overwritten our original data.
 
-We can also do this with a single line of code by using a wildcard:
+Since we might have multiple different criteria we want to search for, creating a new output file each time has the potential to clutter up our workspace. 
+We also thus far haven't been interested in the actual contents of those files, only in the number of reads that we've found. We created the files to store the reads and then counted the lines in the file to see how many reads matched our criteria. 
+There's a way to do this, however, that doesn't require us to create these intermediate files - the pipe command (`|`).
 
-~~~
-$ grep -B1 -A2 NNNNNNNNNN *.fastq > bad_reads.txt
-$ wc -l bad_reads.txt
-~~~
-{: .bash}
-
-~~~
-537 bad_reads.txt
-~~~
-{: .output}
-
-Since we might have multiple different criteria we want to search for,
-creating a new output file each time has the potential to clutter up our workspace. We also
-thus far haven't been interested in the actual contents of those files, only in the number of
-reads that we've found. We created the files to store the reads and then counted the lines in
-the file to see how many reads matched our criteria. There's a way to do this, however, that
-doesn't require us to create these intermediate files - the pipe command (`|`).
-
-This is probably not a key on
-your keyboard you use very much, so let's all take a minute to find that key. For the standard QWERTY keyboard
+This is probably not a key on your keyboard you use very much, so let's all take a minute to find that key. For the standard QWERTY keyboard
 layout, the `|` character can be found using the key combination
 
 - <kbd>Shift</kbd>+<kbd>\</kbd>
@@ -346,7 +302,7 @@ look at it, like we can with `less`. Well it turns out that we can! We can redir
 from our `grep` call through the `less` command.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | less
+$ grep -B1 -A2 NNN ERR4998593_1.fastq | less
 ~~~
 {: .bash}
 
@@ -358,7 +314,7 @@ the output of the grep search to the command `wc -l`. This can be helpful for in
 you would like to save it to a file.
 
 ~~~
-$ grep -B1 -A2 NNNNNNNNNN SRR098026.fastq | wc -l
+$ grep -B1 -A2 NNN ERR4998593_1.fastq | wc -l
 ~~~
 {: .bash}
 
@@ -373,10 +329,7 @@ Redirecting output is often not intuitive, and can take some time to get used to
 comfortable with redirection, however, you'll be able to combine any number of commands to
 do all sorts of exciting things with your data!
 
-None of the command line programs we've been learning
-do anything all that impressive on their own, but when you start chaining
-them together, you can do some really powerful things very
-efficiently.
+None of the command line programs we've been learning do anything all that impressive on their own, but when you start chaining them together, you can do some really powerful things very efficiently.
 
 Here is what your file structure should look like at the end of this episode:
-![A file hierarchy tree](../fig/prenomics02-ep3.png){:width="500px"}
+![A file hierarchy tree](../fig/file_tree_02_ep3.png){:width="500px"}
