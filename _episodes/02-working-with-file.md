@@ -180,6 +180,7 @@ $ less ERR4998593_1.fastq
 > ![](../fig/fasta_file_format_l2.png){:width="600px"}
 >
 > Each sequence is described in four lines:
+
 > |Line|Description|
 > |----|-----------|
 > |1|Always begins with '@' and gives the sequence identifier and an optional description|
@@ -195,8 +196,7 @@ $ less ERR4998593_1.fastq
 >
 > > ## Solution
 > > 1. The last line of the file is `FFFFFFFF,FFFFF:FFFFFFFFFF:FFFFFF:FF:FFFFFFF:FFFFFFFFFFFFFFFFFFFF,FF:FFFF:FFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF::FFFFFFFFF:FFFFFF`
-> > {: .solution}
->
+> {: .solution}
 {: .challenge}
 
 ### Some navigation commands in `less`:
@@ -273,30 +273,28 @@ FFFFFFFF,FFFFF:FFFFFFFFFF:FFFFFF:FF:FFFFFFF:FFFFFFFFFFFFFFFFFFFF,FF:FFFF:FFFFFFF
 ~~~
 {: .output}
 
-The `-n` option to either of these commands can be used to print the
-first or last `n` lines of a file.
+The `-n` option to either of these commands can be used to print the first or last `n` lines of a file.
 
 ~~~
-$ head -n 1 SRR098026.fastq
+$ head -n 1 ERR4998593_1.fastq
 ~~~
 {: .bash}
 
 ~~~
-@SRR098026.1 HWUSI-EAS1599_1:2:1:0:968 length=35
+@ERR4998593.1 1 length=151
 ~~~
 {: .output}
 
 ~~~
-$ tail -n 1 SRR098026.fastq
+$ tail -n 1 ERR4998593_1.fastq
 ~~~
 {: .bash}
 
 ~~~
-A!@B!BBB@ABAB#########!!!!!!!######
+FFFFFFFF,FFFFF:FFFFFFFFFF:FFFFFF:FF:FFFFFFF:FFFFFFFFFFFFFFFFFFFF,FF:FFFF:FFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF::FFFFFFFFF:FFFFFF
+
 ~~~
 {: .output}
-
-You will learn more about how to interpret these outputs on [day three](https://cloud-span.github.io/03genomics/) of the [Cloud-SPAN Genomics module](https://cloud-span.github.io/00genomics/).
 
 ## Creating, moving, copying, and removing
 
@@ -306,6 +304,14 @@ but there will be some cases (like when you're working with a remote computer li
 impossible. You'll also find that you may be working with hundreds of files and want to do similar manipulations to all
 of those files. In cases like this, it's much faster to do these operations at the command line.
 
+So far in this lesson we've been working with the files in the `illumina_fastq` directory. We're now going to switch to using files in the `sample_fastq` directory. This is because executing commands like copying and moving on large files can take a long time. Our new files are smaller and will be quicker to work with for now.
+
+> ## New directory, same files?
+> You might notice that the files in `sample_fastq` have very similar names to those in `illumina_fastq`. Both sets of files are from the same experiment, which is why they have similar names. The only difference is that the `sample_fastq` files end in a 2 while the `illumina_fastq` files end in a 3.
+>
+> It can be confusing to work with similarly named files. You could rename them but in this case we'll leave them as they are, since we won't ever be using both directories at the same time.
+{: .callout}
+
 ### Copying Files
 
 When working with computational data, it's important to keep a safe copy of that data that can't be accidentally overwritten or deleted.
@@ -313,26 +319,26 @@ For this lesson, our raw data is our FASTQ files.
 
 First, let's make a copy of one of our FASTQ files using the `cp` command.
 
-Navigate to the `shell_data/untrimmed_fastq` directory and enter:
+Navigate to the `cs_course/data/sample_fastq` directory and enter:
 
 ~~~
-$ cp SRR098026.fastq SRR098026-copy.fastq
+$ cp ERR4998592_1.fastq ERR4998592_1_copy.fastq
 $ ls -F
 ~~~
 {: .bash}
 
 ~~~
-SRR097977.fastq  SRR098026-copy.fastq  SRR098026.fastq
+ERR4998592_1.fastq  ERR4998592_1_copy.fastq  ERR4998592_2.fastq
 ~~~
 {: .output}
+The prompt will disappear for a few seconds and reappear when the command is completed and the backup is made.
 
-We now have two copies of the `SRR098026.fastq` file, one of them named `SRR098026-copy.fastq`. We'll move this file to a new directory
+We now have two copies of the `ERR4998592_1.fastq` file, one of them named `ERR4998592_1_copy.fastq`. We'll move this file to a new directory
 called `backup` where we'll store our backup data files.
 
 ### Creating Directories
 
-The `mkdir` command is used to make a directory. Enter `mkdir`
-followed by a space, then the directory name you want to create:
+The `mkdir` command is used to make a directory. Enter `mkdir`followed by a space, then the directory name you want to create:
 
 ~~~
 $ mkdir backup
@@ -341,17 +347,16 @@ $ mkdir backup
 
 ### Moving / Renaming
 
-We can now move our backup file to this directory. We can
-move files around using the command `mv`:
+We can now move our backup file to this directory. We can move files around using the command `mv`:
 
 ~~~
-$ mv SRR098026-copy.fastq backup
+$ mv ERR4998592_1_copy.fastq backup
 $ ls backup
 ~~~
 {: .bash}
 
 ~~~
-SRR098026-copy.fastq
+ERR4998593_1_copy.fastq
 ~~~
 {: .output}
 
@@ -359,13 +364,13 @@ The `mv` command is also how you rename files. Let's rename this file to make it
 
 ~~~
 $ cd backup
-$ mv SRR098026-copy.fastq SRR098026-backup.fastq
+$ mv ERR4998592_1_copy.fastq ERR4998592_1_backup.fastq
 $ ls
 ~~~
 {: .bash}
 
 ~~~
-SRR098026-backup.fastq
+ERR4998593_1_backup.fastq
 ~~~
 {: .output}
 
@@ -374,17 +379,14 @@ SRR098026-backup.fastq
 You can delete or remove files with the `rm` command:
 
 ~~~
-$ rm SRR098026-backup.fastq
+$ rm ERR4998592_1_backup.fastq
 ~~~
 {: .bash}
 
-**Important**: The `rm` command permanently removes the file. Be careful with this command. It doesn't just nicely put the files in the Trash. They're really gone.
+**Important**: The `rm` command permanently removes the file. Be careful with this command. It doesn't just nicely put the files in the recycling. They're really gone.
 
-By default, `rm` will not delete directories. You can tell `rm` to
-delete a directory using the `-r` (recursive) option. Let's delete the backup directory
-we just made.
-
-Enter the following command:
+By default, `rm` will not delete directories. You can tell `rm` to delete a directory using the `-r` (recursive) option. Let's delete the backup directory
+we just made:
 
 ~~~
 $ cd ..
@@ -396,30 +398,30 @@ This will delete not only the directory, but all files within the directory.
 
 > ## Exercise
 >
-> Starting in the `shell_data/untrimmed_fastq/` directory, do the following:
+> Starting in the `sample_fastq` directory, do the following:
 > 1. Make sure that you have deleted your backup directory and all files it contains.  
 > 2. Create a backup of each of your FASTQ files using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't
-> learned yet how to do this
-> with a wildcard.)  
+> learned yet how to do this with a wildcard.)  
 > 3. Use a wildcard to move all of your backup files to a new backup directory.
-> 4. It doesn't make sense to keep our backup directory inside the directory it is backing up. What if we accidentally delete the `untrimmed_fastq` directory?
-> To fix this, move your new backup directory out of `untrimmed_fastq` and into the parent folder, `shell_data`.
+> 4. It doesn't make sense to keep our backup directory inside the directory it is backing up. What if we accidentally delete the `sample_fastq` directory?
+> To fix this, move your new backup directory out of `sample_fastq` and into the parent folder, `data`.
 >
 > > ## Solution
 > >
 > > 1. `rm -r backup`  
-> > 2. `cp SRR098026.fastq SRR098026-backup.fastq` and `cp SRR097977.fastq SRR097977-backup.fastq`  
-> > 3. `mkdir backup` and `mv *-backup.fastq backup`
-> > 4. `mv backup ..` or `mv backup ~/shell_data/` (note that you do not need to use the -r flag to move directories like you do when deleting them)
+> > 2. `cp ERR4998592_1.fastq ERR4998592_1_backup.fastq` and `cp ERR4998592_2.fastq ERR4998592_2_backup.fastq`  
+> > 3. `mkdir backup` and `mv *_backup.fastq backup`
+> > 4. `mv backup ..` or `mv backup ~/cs_course/data/` (note that you do not need to use the -r flag to move directories like you do when deleting them)
 > > 
-> > It's always a good idea to check your work. Move to the `shell_data` folder with `cd ..` and then list the contents of `backup` with `ls -l backup`. You should see something like:
+> > It's always a good idea to check your work. Move to the `data` folder with `cd ..` and then list the contents of `backup` with `ls -l backup`. You should see something like:
 > > ~~~
-> > -rw-r--r-- 1 csuser csuser 47552 Nov 15 23:06 SRR097977-backup.fastq
-> > -rw-r--r-- 1 csuser csuser 43332 Nov 15 23:06 SRR098026-backup.fastq
+> > -rw-rw-r-- 1 csuser csuser 2811886584 Feb 22 11:25 ERR4998592_1_backup.fastq
+> > -rw-rw-r-- 1 csuser csuser 2302264784 Feb 22 11:29 ERR4998592_2_backup.fastq
+> >
 > > ~~~
 > > {: .output}
 > {: .solution}
 {: .challenge}
 
 Here is what your file structure should look like at the end of this episode:
-![A file hierarchy tree](../fig/prenomics02-ep2.png){:width="500px"}
+![A file hierarchy tree](../fig/file_tree_02_ep2.png){:width="500px"}
