@@ -180,7 +180,7 @@ Over time, it will become easier for you to keep a mental note of the structure 
 
 > ## Relative path resolution
 >
-> Using the file system diagram below, if `pwd` displays `~/csuser/shell_data/illumina_fastq`,
+> Using the file system diagram below, if `pwd` displays `~/csuser/cs_course/data/illumina_fastq`,
 > what will `ls ../nano_fastq` display?
 > 
 > Can you explain why?
