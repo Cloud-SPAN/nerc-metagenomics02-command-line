@@ -60,6 +60,8 @@ However, suppose we want to see how many reads in our file have bad segments con
 >
 {: .callout}
 
+To search files we use a new command called `grep`. The name "grep" comes from an abbreviation of **g**lobal **r**egular **e**xpression **p**rint.
+
 Let's search for the string NNN in the ERR4998593_1 file:
 ~~~
 $ grep NNN ERR4998593_1.fastq
@@ -87,16 +89,16 @@ $ grep -B1 -A2 NNN ERR4998593_1.fastq
 One of the sets of lines returned by this command is:
 
 ~~~
-@ERR4998593.16431295 16431295 length=151
-TTCGCCCGCCCTTGAATCCACGATNCCNTNCNAATNNNCGATCGGTGGANNACCNTGAATTCCAAATGCAAAATNAGGGCGGAGGGAAAAGAGGCATATTNCGTGCTTATGTCTCTTAATGAGCGGCCCTCTCCGCTGATCTAGCCAAGCC
-+ERR4998593.16431295 16431295 length=151
-FFFFFFFFFFFFFFFFFFFFFFFF#FF#F#F#FFF###FFFFFFFFFFF##,FF#FFFFFFFFFFFFFFFF,FF#FFFFFFF,FFFFFFF:F:FFFFFFF#FFFFFFFFFFFFFFFFFFFFF,FFFFFFFFFFFF:FFFFFFFFFFFF,FF
+@ERR4998593.50651366 50651366 length=151
+TCCTTGCGGAGCCGGGCATGCAGGNCCTGCAGGTAGNGGCGGCGGCAGGNGCCGCCGCCGTCTACCACGGTGTANCGNNCNANNNNNCANTCATCGACGGNNGGTGNGACNNCTGCGATCTTGCGNCGCCTGGTCTNGCGGCCATCCTCTN
++
+FFF,FFFFFFFF:,,F:F,FFFFF#,:F,FFFF:F,#,FFFFF::FF:,#FFFFFFFFF:F,FF,FFFF,F,FF#,F##:#:#####:F#FFFFFFF,FF##:FFF#F:F##FFF,FFFFFF,,,#FF:F:,FFFF#F:::F:FFF:FF,#
 ~~~
 {: .output}
 
 > ## Exercise
 >
-> 1. Search for the sequence `GATACCACTTCCAGT` in the `ERR4998593_1.fastq` file.
+> 1. Search for the sequence `AAAACCCCGGGGTTTT` in the `ERR4998593_1.fastq` file.
 > Have your search return all matching lines and the name (or identifier) for each sequence
 > that contains a match. What is the output?
 >
@@ -108,23 +110,26 @@ FFFFFFFFFFFFFFFFFFFFFFFF#FF#F#F#FFF###FFFFFFFFFFF##,FF#FFFFFFFFFFFFFFFF,FF#FFFFF
 > > 1. `grep -B1 GATACCACTTCCAGT ERR4998593_1.fastq`
 > >
 > >     ```
-> >     @ERR4998593.10526179 10526179 length=151
-> > GGTTAGTCAAGGGGGGAAACGATTTTTTTATAAGAATTTTCAGTGGCAAGTGATACCACTTCCAGTTTGTAATTGCGCCATTTGAGAATCAGTTTAGGCGTTGGAGTTACGGTTGTCGCTTTCCCCCTCACCCCGCCCACACCCTTGGGGA
+> >     @ERR4998593.49988640 49988640 length=151
+> > GGTCCATGAAGCTTGTACTGCGCGCCGATATTCTCGAAGCCGAGGCCCTAGTCCGCAAAAAACAAAAACCCCGGGGTTTTGGCCCCGGGGTTTGTCGTTTGAGCGTTTGCCGCGGCGATCAGAACCGGTAGTTGACGCCGGCGCGAACGAT
 > > --
-> > @ERR4998593.46113465 46113465 length=151
-> > GACCGGATGAGATACCACTTCCAGTCTGAGCCGGCACAGGGTGCACAGCGAAAGTCGCGCTTAGGACGAAAGCGGCGAATCCGCGTGAAACAGTGGTTCCCATGTCTTGTGCCTCAGTCCAGACTCATCGGCATCCGGACGATGAAGTTCG
+> > @ERR4998593.16888007 16888007 length=151
+> > GCCGAGGCCCTAGTCCGCAAAAAACAAAAACCCCGGGGTTTTGGCCCCGGGGTTTGTCGTTTTAGCGTTTGCCGCGGCGATCAGAACCGGTAGTTGACGCCGGCGCGAACGATGTTGGTGGTGAACGACACGTTGTCGGTCACGAACGGTC
+> > --
+> > @ERR4998593.39668571 39668571 length=151
+> > CCCCGGGGCCAAAACCCCGGGGTTTTTGTTTTTTGCGGACTAGGCCTCGGCTTCGAGAATATCGGCGCGCAGTCCAAGCTTCATGGACCTGTCGTGACCCAAGATGGCGGATCAGGCGGGAGACTCAGGTTTTCCCGAAAGGTCTTTATGC
 > >     ```
 > >
 > > 2. `grep -B1 AACCGGTTAACCGGTT *.fastq`
 > >
 > >     ```
-> > ERR4998593_1.fastq-@ERR4998593.52741374 52741374 length=151
-> > ERR4998593_1.fastq:GACAAGCTCATCTTCCAAAATCCGCAACGGTTTTTAAGCCAGTGCCCGAAATTTAGATTAACCGATTAACCGGTTAACCGGTTCGTAGGAGACGGGTAACGAGACTCTAACTCAAGTTTCGCATACTACCACCAAAACAGCCCGTCCGCGT
-> > --
 > > ERR4998593_1.fastq-@ERR4998593.64616570 64616570 length=151
 > > ERR4998593_1.fastq:GACAAGCTCATCTTCCAAAATCCGCAACGGTTTTTAAGCCAGTGCCCGAAATTTAGATTAACCGATTAACCGGTTAACCGGTTCGTAGGAGACGGGTAACGAGACTCTAACTCAAGTTTCGCATACTACCACCAAAACAGCCCGTCCGCGT
---
+> > --
 > > ERR4998593_1.fastq-@ERR4998593.64617528 64617528 length=151
+> > ERR4998593_1.fastq:GACAAGCTCATCTTCCAAAATCCGCAACGGTTTTTAAGCCAGTGCCCGAAATTTAGATTAACCGATTAACCGGTTAACCGGTTCGTAGGAGACGGGTAACGAGACTCTAACTCAAGTTTCGCATACTACCACCAAAACAGCCCGTCCGCGT
+> > --
+> > ERR4998593_1.fastq-@ERR4998593.52741374 52741374 length=151
 > > ERR4998593_1.fastq:GACAAGCTCATCTTCCAAAATCCGCAACGGTTTTTAAGCCAGTGCCCGAAATTTAGATTAACCGATTAACCGGTTAACCGGTTCGTAGGAGACGGGTAACGAGACTCTAACTCAAGTTTCGCATACTACCACCAAAACAGCCCGTCCGCGT
 > > --
 > > ERR4998593_2.fastq-@ERR4998593.2096117 2096117 length=151
@@ -189,7 +194,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-96 bad_reads.txt
+52 bad_reads.txt
 ~~~
 {: .output}
 
@@ -211,9 +216,9 @@ The `--no-group-separator` flag used above prevents grep from adding unnecessary
 > > {: .bash}
 > >
 > > ~~~
-> > 274108880 ERR4998593_1.fastq
+> > 137054440 ERR4998593_1.fastq
 > > ~~~
-> > Now you can divide this number by four to get the number of sequences in your fastq file (68527220).
+> > Now you can divide this number by four to get the number of sequences in your fastq file (34263610).
 > > {: .output}
 > >
 > > 2.
@@ -243,7 +248,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-96 bad_reads.txt
+52 bad_reads.txt
 ~~~
 {: .output}
 
@@ -270,7 +275,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-96 bad_reads.txt
+52 bad_reads.txt
 ~~~
 {: .output}
 
@@ -314,7 +319,7 @@ the output of the grep search to the command `wc -l`. This can be helpful for in
 you would like to save it to a file.
 
 ~~~
-$ grep -B1 -A2 NNN ERR4998593_1.fastq | wc -l
+$ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq | wc -l
 ~~~
 {: .bash}
 
@@ -329,7 +334,7 @@ Redirecting output is often not intuitive, and can take some time to get used to
 comfortable with redirection, however, you'll be able to combine any number of commands to
 do all sorts of exciting things with your data!
 
-None of the command line programs we've been learning do anything all that impressive on their own, but when you start chaining them together, you can do some really powerful things very efficiently.
+None of the command line programs we've been learning do anything all that impressive on their own, but when you start chaining them together, you can do some really powerful things very efficiently. We'll be using the redirect `>` and pipe `|` later in the course as part of our analysis workflow, so you will get lots of practice using them.
 
 Here is what your file structure should look like at the end of this episode:
 ![A file hierarchy tree](../fig/file_tree_02_ep3.png){:width="500px"}
