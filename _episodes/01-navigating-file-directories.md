@@ -54,7 +54,7 @@ The first thing we need to do is log in to our cloud instance.
 ## Reminder: our file structure
 
 Before we start, here's a reminder of what our file structure looks like as a hierarchy tree:
-![A file hierarchy tree](../fig/blank_instance_file_tree.png){:width="400px"}. Keep this in mind as we continue to navigate the file system, and don't hesitate to refer back to it if needed.
+![A file hierarchy tree](../fig/blank_instance_file_tree_with_hidden.png){:width="400px"}. Keep this in mind as we continue to navigate the file system, and don't hesitate to refer back to it if needed.
 
 ## Examining the contents of other directories
 
@@ -185,11 +185,11 @@ Over time, it will become easier for you to keep a mental note of the structure 
 > 
 > Can you explain why?
 >
-> ![blank instance file tree](../fig/blank_instance_file_tree.png){:width="300px"}
+> ![blank instance file tree](../fig/blank_instance_file_tree_with_hidden.png){:width="300px"}
 >
 > > ## Solution
 > > ~~~
-> > ERR5000342.fastq
+> > ERR5000342_sub15.fastq
 > > ~~~
 > > {: .output}
 > > 

@@ -180,7 +180,7 @@ $ less ERR4998593_1.fastq
 > ![](../fig/fasta_file_format_l2.png){:width="600px"}
 >
 > Each sequence is described in four lines:
-
+>
 > |Line|Description|
 > |----|-----------|
 > |1|Always begins with '@' and gives the sequence identifier and an optional description|
@@ -195,7 +195,7 @@ $ less ERR4998593_1.fastq
 > 1. Open the `~/cs_course/data/illumina_fastq/ERR4998593_1.fastq` file in `less`. What is the last line of the file? (Hint: use the shortcuts above to speed things up)
 >
 > > ## Solution
-> > 1. The last line of the file is `FFFFFFFF,FFFFF:FFFFFFFFFF:FFFFFF:FF:FFFFFFF:FFFFFFFFFFFFFFFFFFFF,FF:FFFF:FFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF::FFFFFFFFF:FFFFFF`
+> > 1. `:FFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFF:FFFFFFFF,FFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFF:FFF:FFFFFFFFFFFFFF:FFFFFF:FF:FFFFFFFFFFFFFFFFFFFFFF,F,FFF,FFFFFF,FFFF`
 > {: .solution}
 {: .challenge}
 
@@ -221,7 +221,7 @@ forward to the next instance of this sequence motif. If you instead type `?` and
 > Share your answer to o see if it matches everyone else's!
 >
 > > ## Solution
-> > `CAG`
+> > `CTT`
 > {: .solution}
 {: .challenge}
 
@@ -240,16 +240,16 @@ $ head ERR4998593_1.fastq
 {: .bash}
 
 ~~~
-CNGTTGTTGAAATCGATCGTGTAGGTGCTGTTGGTAGCGGCCGCCCCTCCGTACGACGGCGAGCCGCCAGCCTTCAGAATCAGACCCGGGCCGATCATCACCGCAACTCCCGCGATGCTGAACTGGTCGTCTCCGCGAAAGCCCGCGCTGG
-+ERR4998593.1 1 length=151
-F#FFFF::FFFFFFFFFF,FFFFFFF::FFFF:FFF::,FFF:FFFFFF,F:FFFFFFFFFFFFFFFFF:FF:FFF:FF:FF,FFFF::FFF:FFFFFFFFFFFFFFFFFFFFFF::F,,FFFF:FFFFF:FFFFFFFFFF,FF,F:FF,F
-@ERR4998593.2 2 length=151
-CNCCATACGGCTTCGGCCGTGCGCTGGTCGACGCCGCCGGTACGGTGATCCAGGAGCTGAGCCCCGGCCTGACGGCCCGCCGCCCGGGCTGCCACGTCCGGCTCATCCCGAAGGATCGCGAGAAGATCGGCGTCTGGCTCCTCATCCTCGA
-+ERR4998593.2 2 length=151
-F#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+@ERR4998593.40838091 40838091 length=151
+CCACATGCTTTAAGTGCATGTGGTACTGCTCCAGGACCAGCATTGTAGGTCGCCAATGCTTTGGCGTAGGTGCCATCAAACATATTCGTGTAATGAGCCATGAGATGGGCTGCTCCCTTCAATGCATCAACCGGATTCCACGGATCAATGC
++
+:FFFFFFF:,FFF:FFFFFFFFFFFFFFFFFFFF:FFFF:FFFFFFFFFFF:FFFFFFFFF:FFFF:FFFFFFFFFFFFFFFFFFF:FFFF,FFFFFFF,FFF:FF,FFFFFFF::FF::FFFF:FFFFF:,:FFFFF,,FFFFFFFF,,F
+@ERR4998593.57624042 57624042 length=151
+CCTTACCACACCGGGGCTGTGGCGTTCGACCCCATCGGCAAGGCACTCTGGGTTTCCGATAGCTCGCACCATCGGCTGCTGCGCGTCCGCAATCCGGACGGCTGGGAGAGCAAACTGCTCGTGGACACGGTCATCGGTCAGAAGGACAGGT
++
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFF
 @ERR4998593.3 3 length=151
-GNGGTGCTCGACGGTGGCTCGGCGGATGCGCATGGCGTCGGGCCTGCGGTCCAGCCGCTCCCGCATGGCGTCGATCACCGCCTCATGCTCCCAGCGTTTGATGCGGCGCTCCTTGCCGCTCGTACACCGGCTCTTCAGCGGGCAGCCGGCG
-
+GNGGTGCTCGACGGTGGCTCGGCGGATGCGCATGGCGTCGGGCCTGCGGTCCAGCCGCTCCCGCATGGCGTCGATCACCGCCTCATGCTCCCAGCGTTTGATGCGGCGCTCCTTGCCGCTCGTACACCGGCTCTTCAGCGGGCAGCCGGCGta
 ~~~
 {: .output}
 
@@ -259,17 +259,16 @@ $ tail ERR4998593_1.fastq
 {: .bash}
 
 ~~~
-+ERR4998593.68527218 68527218 length=151
-FF,F,FFF:FFF:FFFF:FFFFFFFFFF:FFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFF:FFFFF:FFFFFFFFFFFFFFFFFFFF:FFF,FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF::
-@ERR4998593.68527219 68527219 length=151
-GATTATGTGTTTCATTGTTATATGTATCAAAAATAGATTCCTATAATAATATTTAAAATGAATAATAGAAATGAGATGATTGAATTTCTTACTTTTTGTAAAAAAGCTGATGGAATTCATGTAAGAATAAAATCATCCTTTAATCATCTTC
-+ERR4998593.68527219 68527219 length=151
-FF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFF:FF:FFFFFF::F:FFFFFFFFFFFFFF:::FFFFFFFFFFF,FFFFFFFF:FFFF
-@ERR4998593.68527220 68527220 length=151
-GCCTAGTAAAACGCGTCGCTCGCGTTTGTGGAGTGATGGCCGAAGGGCAGCAGCAGCGACTCCTACGATCGATGGATTTCCAGCAGAAGAAGAACCTCATGCTTCACAACTCAATAAGCTTGATTTGTAGCGCATCAAGGCGCTACTCTTA
-+ERR4998593.68527220 68527220 length=151
-FFFFFFFF,FFFFF:FFFFFFFFFF:FFFFFF:FF:FFFFFFF:FFFFFFFFFFFFFFFFFFFF,FF:FFFF:FFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF::FFFFFFFFF:FFFFFF
-
++
+FFF:F,FF:FFFFFF:F,:FFF,FF:FF,FFF::F:F,FF,FF,FFF,FFFFFF:FFFFFFF,F,,FFF:FFFF:,FFFF:FF::F:FFF,F:FFFF,:FFFFF,F:F:FF,FF:F:FFFF:FFF:FFF::FF:FF:,::FF,FF:,F,FF
+@ERR4998593.55595926 55595926 length=151
+CAGTACAACGTTCGCTCCCTGAATTTCTGTTTCTCGGCCGGCGAAGCAATTGCTGTGGCTATCCAGGAGCGGTTCAAGCGGATGTTCGGCGTCGAAATTACGGAAGGCTGCGGGATGACCGAACTGCAAATTTACTCCATGAATCCGCCAT
++
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFF:FFFFFFF:FF:FFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+@ERR4998593.34263610 34263610 length=151
+ACGCCCCACAGGGCGGCACCGACGCCGCCGCCCGGGCCCGCCGGCCCGCCCCGGTGGGCACCGGTTGCCACTGCGGCTTGCTCGGCCGTCTCACTCACTTGGACACACTTCCGTTCTTCACCGTCTCCACTGGCCGGCTAGACCGGTCCCG
++
+FFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,FFF,FFFF:FFFFFFFF,FFFFFF::F:F,FFFFFF,FFFFFFFFFFFFF,F:F:FF,FFFF
 ~~~
 {: .output}
 
@@ -281,7 +280,7 @@ $ head -n 1 ERR4998593_1.fastq
 {: .bash}
 
 ~~~
-@ERR4998593.1 1 length=151
+@ERR4998593.40838091 40838091 length=151
 ~~~
 {: .output}
 
@@ -291,8 +290,7 @@ $ tail -n 1 ERR4998593_1.fastq
 {: .bash}
 
 ~~~
-FFFFFFFF,FFFFF:FFFFFFFFFF:FFFFFF:FF:FFFFFFF:FFFFFFFFFFFFFFFFFFFF,FF:FFFF:FFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF::FFFFFFFFF:FFFFFF
-
+F:FFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFF:FFFFFFFF,FFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFF:FFF:FFFFFFFFFFFFFF:FFFFFF:FF:FFFFFFFFFFFFFFFFFFFFFF,F,FFF,FFFFFF,FFFF
 ~~~
 {: .output}
 
@@ -304,13 +302,7 @@ but there will be some cases (like when you're working with a remote computer li
 impossible. You'll also find that you may be working with hundreds of files and want to do similar manipulations to all
 of those files. In cases like this, it's much faster to do these operations at the command line.
 
-So far in this lesson we've been working with the files in the `illumina_fastq` directory. We're now going to switch to using files in the `sample_fastq` directory. This is because executing commands like copying and moving on large files can take a long time. Our new files are smaller and will be quicker to work with for now.
-
-> ## New directory, same files?
-> You might notice that the files in `sample_fastq` have very similar names to those in `illumina_fastq`. Both sets of files are from the same experiment, which is why they have similar names. The only difference is that the `sample_fastq` files end in a 2 while the `illumina_fastq` files end in a 3.
->
-> It can be confusing to work with similarly named files. You could rename them but in this case we'll leave them as they are, since we won't ever be using both directories at the same time.
-{: .callout}
+We'll continue looking at our large Illumina sequencing files for the next part of the lesson.
 
 ### Copying Files
 
@@ -319,21 +311,21 @@ For this lesson, our raw data is our FASTQ files.
 
 First, let's make a copy of one of our FASTQ files using the `cp` command.
 
-Navigate to the `cs_course/data/sample_fastq` directory and enter:
+Navigate to the `cs_course/data/illumina_fastq` directory and enter:
 
 ~~~
-$ cp ERR4998592_1.fastq ERR4998592_1_copy.fastq
+$ cp ERR4998593_1.fastq ERR4998593_1_copy.fastq
 $ ls -F
 ~~~
 {: .bash}
 
 ~~~
-ERR4998592_1.fastq  ERR4998592_1_copy.fastq  ERR4998592_2.fastq
+ERR4998593_1.fastq  ERR4998593_1_copy.fastq  ERR4998593_2.fastq
 ~~~
 {: .output}
-The prompt will disappear for a few seconds and reappear when the command is completed and the backup is made.
+The prompt will disappear for up to two minutes and reappear when the command is completed and the backup is made.
 
-We now have two copies of the `ERR4998592_1.fastq` file, one of them named `ERR4998592_1_copy.fastq`. We'll move this file to a new directory
+We now have two copies of the `ERR4998593_1.fastq` file, one of them named `ERR4998593_1_copy.fastq`. We'll move this file to a new directory
 called `backup` where we'll store our backup data files.
 
 ### Creating Directories
@@ -350,7 +342,7 @@ $ mkdir backup
 We can now move our backup file to this directory. We can move files around using the command `mv`:
 
 ~~~
-$ mv ERR4998592_1_copy.fastq backup
+$ mv ERR4998593_1_copy.fastq backup
 $ ls backup
 ~~~
 {: .bash}
@@ -364,7 +356,7 @@ The `mv` command is also how you rename files. Let's rename this file to make it
 
 ~~~
 $ cd backup
-$ mv ERR4998592_1_copy.fastq ERR4998592_1_backup.fastq
+$ mv ERR4998593_1_copy.fastq ERR4998593_1_backup.fastq
 $ ls
 ~~~
 {: .bash}
@@ -379,7 +371,7 @@ ERR4998593_1_backup.fastq
 You can delete or remove files with the `rm` command:
 
 ~~~
-$ rm ERR4998592_1_backup.fastq
+$ rm ERR4998593_1_backup.fastq
 ~~~
 {: .bash}
 
@@ -398,25 +390,25 @@ This will delete not only the directory, but all files within the directory.
 
 > ## Exercise
 >
-> Starting in the `sample_fastq` directory, do the following:
+> Starting in the `illumina_fastq` directory, do the following:
 > 1. Make sure that you have deleted your backup directory and all files it contains.  
 > 2. Create a backup of each of your FASTQ files using `cp`. (Note: You'll need to do this individually for each of the two FASTQ files. We haven't
 > learned yet how to do this with a wildcard.)  
 > 3. Use a wildcard to move all of your backup files to a new backup directory.
-> 4. It doesn't make sense to keep our backup directory inside the directory it is backing up. What if we accidentally delete the `sample_fastq` directory?
-> To fix this, move your new backup directory out of `sample_fastq` and into the parent folder, `data`.
+> 4. It doesn't make sense to keep our backup directory inside the directory it is backing up. What if we accidentally delete the `illumina_fastq` directory?
+> To fix this, move your new backup directory out of `illumina_fastq` and into the parent folder, `data`.
 >
 > > ## Solution
 > >
 > > 1. `rm -r backup`  
-> > 2. `cp ERR4998592_1.fastq ERR4998592_1_backup.fastq` and `cp ERR4998592_2.fastq ERR4998592_2_backup.fastq`  
+> > 2. `cp ERR4998593_1.fastq ERR4998593_1_backup.fastq` and `cp ERR4998593_2.fastq ERR4998593_2_backup.fastq`  
 > > 3. `mkdir backup` and `mv *_backup.fastq backup`
 > > 4. `mv backup ..` or `mv backup ~/cs_course/data/` (note that you do not need to use the -r flag to move directories like you do when deleting them)
 > > 
 > > It's always a good idea to check your work. Move to the `data` folder with `cd ..` and then list the contents of `backup` with `ls -l backup`. You should see something like:
 > > ~~~
-> > -rw-rw-r-- 1 csuser csuser 2811886584 Feb 22 11:25 ERR4998592_1_backup.fastq
-> > -rw-rw-r-- 1 csuser csuser 2302264784 Feb 22 11:29 ERR4998592_2_backup.fastq
+> > -rw-rw-r-- 1 csuser csuser 2811886584 Feb 22 11:25 ERR4998593_1_backup.fastq
+> > -rw-rw-r-- 1 csuser csuser 2302264784 Feb 22 11:29 ERR4998593_2_backup.fastq
 > >
 > > ~~~
 > > {: .output}
