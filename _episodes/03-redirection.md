@@ -323,6 +323,11 @@ $ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq | wc -l
 ~~~
 {: .bash}
 
+~~~
+52 bad_reads.txt
+~~~
+{: .output}
+
 > ## Custom `grep` control
 >
 > Use `man grep` to read more about other options to customize the output of `grep` including extended options,
@@ -330,11 +335,7 @@ $ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq | wc -l
 >
 {: .callout}
 
-Redirecting output is often not intuitive, and can take some time to get used to. Once you're
-comfortable with redirection, however, you'll be able to combine any number of commands to
-do all sorts of exciting things with your data!
+Redirecting output is often not intuitive, and can take some time to get used to. Once you're comfortable with redirection, however, you'll be able to combine any number of commands to do all sorts of exciting things with your data! 
+We'll be using the redirect `>` and pipe `|` later in the course as part of our analysis workflow, so you will get lots of practice using them.
 
-None of the command line programs we've been learning do anything all that impressive on their own, but when you start chaining them together, you can do some really powerful things very efficiently. We'll be using the redirect `>` and pipe `|` later in the course as part of our analysis workflow, so you will get lots of practice using them.
-
-Here is what your file structure should look like at the end of this episode:
-![A file hierarchy tree](../fig/file_tree_02_ep3.png){:width="500px"}
+None of the command line programs we've been learning do anything all that impressive on their own, but when you start chaining them together, you can do some really powerful things very efficiently. 
