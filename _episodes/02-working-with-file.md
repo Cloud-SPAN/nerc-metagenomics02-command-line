@@ -173,7 +173,7 @@ $ less ERR4998593_1.fastq
 ~~~
 {: .bash}
 
-> ## Reminder
+> ## FASTQ format
 > The contents might look a bit confusing. That's because they are in FASTQ format, a popular way to store sequencing data in text-based format.
 > These files contain both sequences and information about each sequence's read accuracy.
 >
@@ -188,6 +188,15 @@ $ less ERR4998593_1.fastq
 > |3|Always begins with a '+' and sometimes the same info in line 1|
 > |4|Has a string of characters which represent the PHRED quality score for each of the bases in line 2; must have same number of characters as line 2|
 >
+> ## PHRED score
+> ~~~
+> Quality encoding: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJ
+>                   |         |         |         |         |
+> Quality score:    01........11........21........31........41   
+> ~~~
+> {: .output}
+>
+> Quality is interpreted as the probability of an incorrect base call. To make it possible to line up each individual nucleotide with its quality score, the numerical score is encoded by a single character. The quality score represents the probability that the corresponding nucleotide call is incorrect. It is a logarithmic scale so a quality score of 10 reflects a base call accuracy of 90%, but a quality score of 20 reflects a base call accuracy of 99%.                 
 {: .callout}
 
 > ## Exercise
