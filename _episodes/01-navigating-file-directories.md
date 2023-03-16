@@ -79,7 +79,7 @@ $ ls cs_course
 {: .bash}
 
 ~~~
-data
+data   databases
 ~~~
 {: .output}
 
@@ -147,7 +147,7 @@ So, to summarize: `csuser` is a directory in `home` which is a directory in `/`.
 Now enter the following command:
 
 ~~~
-$ cd /home/csuser/data/.hidden
+$ cd /home/csuser/cs_course/.hidden
 ~~~
 {: .bash}
 
@@ -162,7 +162,7 @@ $ cd
 You can also navigate to the `.hidden` directory using:
 
 ~~~
-$ cd data/.hidden
+$ cd .hidden
 ~~~
 {: .bash}
 
