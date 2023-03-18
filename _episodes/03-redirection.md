@@ -9,7 +9,6 @@ objectives:
 - "Employ the `grep` command to search for information within files."
 - "Print the results of a command to a file."
 - "Construct command pipelines with two or more stages."
-- "Use `for` loops to run the same command for several input files."
 keypoints:
 - "`grep` is a powerful search tool with many options for customization."
 - "`>`, `>>`, and `|` are different ways of redirecting output."
@@ -107,7 +106,7 @@ FFF,FFFFFFFF:,,F:F,FFFFF#,:F,FFFF:F,#,FFFFF::FF:,#FFFFFFFFF:F,FF,FFFF,F,FF#,F##:
 > that contains a match. How many matching sequences do you get? (this may take up to 4 minutes to complete so be patient!)
 >
 > > ## Solution  
-> > 1. `grep -B1 GATACCACTTCCAGT ERR4998593_1.fastq`
+> > 1. `grep -B1 AAAACCCCGGGGTTTT ERR4998593_1.fastq`
 > >
 > >     ```
 > >     @ERR4998593.49988640 49988640 length=151
@@ -173,7 +172,7 @@ $ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq > bad_reads.txt
 The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should see a new file called `bad_reads.txt`.
 
-We can check the number of lines in our new file using a command called `wc`. `wc` stands for **word count**. This command counts the number of words, lines, and characters in a file. The FASTQ file may change over time, so given the potential for updates, make sure your file matches your instructor's output.
+We can check the number of lines in our new file using a command called `wc`. `wc` stands for **word count**. This command counts the number of words, lines, and characters in a file. The FASTQ file may change over time, so given the potential for updates, make sure the output of your `wc` command below matches your instructor's output.
 
 As of February 2023, wc gives the following output:  
 ~~~
@@ -218,8 +217,8 @@ The `--no-group-separator` flag used above prevents grep from adding unnecessary
 > > ~~~
 > > 137054440 ERR4998593_1.fastq
 > > ~~~
-> > Now you can divide this number by four to get the number of sequences in your fastq file (34263610).
 > > {: .output}
+> > Now you can divide this number by four to get the number of sequences in your fastq file (34263610).
 > >
 > > 2.
 > > ~~~
@@ -229,7 +228,7 @@ The `--no-group-separator` flag used above prevents grep from adding unnecessary
 > > {: .bash}
 > >
 > > ~~~
-> > 4 bad_reads.txt
+> > 3 bad_reads.txt
 > > ~~~
 > > {: .output}
 > {: .solution}
@@ -286,7 +285,7 @@ $ wc -l bad_reads.txt
 {: .bash}
 
 ~~~
-96 bad_reads.txt
+52 bad_reads.txt
 ~~~
 {: .output}
 
@@ -324,7 +323,7 @@ $ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq | wc -l
 {: .bash}
 
 ~~~
-52 bad_reads.txt
+52
 ~~~
 {: .output}
 

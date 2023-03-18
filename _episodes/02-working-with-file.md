@@ -236,7 +236,7 @@ forward to the next instance of this sequence motif. If you instead type `?` and
 
 Remember, the `man` program actually uses `less` internally and therefore uses the same commands, so you can search documentation using "/" as well!
 
-Another way to look at files using the command `cat`. This command prints out the entire contents of the file to the console. In large files, like the ones we're working with today, this can take a long time and should generally be avoided. For small files, it can be a useful tool.
+Another way to look at files is using the command `cat`. This command prints out the entire contents of the file to the console. In large files, like the ones we're working with today, this can take a long time and should generally be avoided. For small files, it can be a useful tool.
 
 There's another final way that we can look at files, and in this case, just look at part of them. This can be particularly useful if we just want
 to see the beginning or end of the file, or see how it's formatted.
@@ -303,7 +303,7 @@ F:FFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFF:FFFFFFFF,FFFFFFFFFFFFFFFFFFFFFFFFFF:FFFF
 ~~~
 {: .output}
 
-## Creating, moving, copying, and removing
+## Creating, moving, copying, and removing files
 
 Now we can move around in the file structure, look at files, and search files. But what if we want to copy files or move
 them around or get rid of them? Most of the time, you can do these sorts of file manipulations without the command line,

@@ -54,7 +54,9 @@ The first thing we need to do is log in to our cloud instance.
 ## Reminder: our file structure
 
 Before we start, here's a reminder of what our file structure looks like as a hierarchy tree:
-![A file hierarchy tree](../fig/blank_instance_file_tree_with_hidden.png){:width="400px"}. Keep this in mind as we continue to navigate the file system, and don't hesitate to refer back to it if needed.
+![A file hierarchy tree](../fig/blank_instance_file_tree_with_hidden.png){:width="400px"}
+
+Keep this in mind as we continue to navigate the file system, and don't hesitate to refer back to it if needed.
 
 ## Examining the contents of other directories
 
@@ -162,15 +164,14 @@ $ cd
 You can also navigate to the `.hidden` directory using:
 
 ~~~
-$ cd .hidden
+$ cd cs_course/.hidden
 ~~~
 {: .bash}
 
-
 These two commands have the same effect, they both take us to the `.hidden` directory.
-The first uses the absolute path, giving the full address from the home directory. 
+The first uses the absolute path, giving the full address from the root directory `/`. 
 The second uses a relative path, giving only the address from the working directory. 
-A full path always starts with a `/`. A relative path does not.
+A absolute (full) path always starts with a `/`. A relative path does not.
 
 You can usually use either a full path or a relative path depending on what is most convenient.
 If you want to reach a directory further down the same branch as your current working directory, it's easiest to use the relative path since it involves less typing.
