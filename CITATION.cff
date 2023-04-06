@@ -18,28 +18,8 @@ authors:
 - family-names: "Rand"
   given-names: "Emma"
   orcid: "https://orcid.org/0000-0002-1358-8275"
-title: "Cloud-SPAN Prenomics Course: Using the command line"
-version: 0.1.0
-doi: 10.5281/10.5281/zenodo.6354062
-date-released: 2022-03-01
-url: "https://cloud-span.github.io/prenomics02-command-line/"
-references:
-  - authors:
-    - family-names: "Becker"
-      given-names: "Erin Alison"
-    - family-names: "Teal"
-      given-names: "Tracy"
-    - family-names: "Michonneau"
-      given-names: "Francois"
-    - family-names: "Schurch"
-      given-names: "Anita"
-    - family-names: "McKay"
-      given-names: "Sheldon John"
-    - family-names: "Mizzi"
-      given-names: "Jessica Elizabeth"
-    date-released: "2019-06-01"
-    doi: 10.5281/zenodo.3260560
-    repository-code: "https://github.com/datacarpentry/shell-genomics/"
-    title: "Data Carpentry:  Introduction to the shell for genomics data"
-    type: software
-    version: v2019.06.1
+title: "Cloud-SPAN NERC Metagenomics Course Lesson 2: Using the Command Line"
+version: 1.0.0
+doi: 
+date-released: 2023-04-06
+url: "https://cloud-span.github.io/nerc-metagenomics02-command-line/"
