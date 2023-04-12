@@ -181,7 +181,7 @@ $ wc bad_reads.txt
 {: .bash}
 
 ~~~
-96  192  9264  bad_reads.txt
+  52   78 4511 bad_reads.txt
 ~~~
 {: .output}
 
