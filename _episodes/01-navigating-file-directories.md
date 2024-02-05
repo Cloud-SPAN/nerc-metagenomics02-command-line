@@ -28,16 +28,11 @@ The first thing we need to do is log in to our cloud instance.
 
     Now we can open the command line.
 
-    For Windows users:
-
-    - Right click anywhere inside the blank space of the file manager, then select **Git Bash Here**.
+    **Windows users**: right click anywhere inside the blank space of the file manager, then select **Git Bash Here**.
   
-    For Mac users:
-
-    You have two options. 
-    
-    EITHER
-    - Open **Terminal** in one window and type `cd` followed by a space. Do not press enter! Now open **Finder** in another window. Drag and drop the `cloudspan` folder from the Finder to the Terminal. You should see the file path leading to your `cloudspan` folder appear. Now press enter to navigate to the folder.
+    **Mac users** you have two options:\
+    EITHER:
+    - Open **Terminal** in one window and type `cd` followed by a space but **don't press** `Enter` yet! Now open **Finder** in another window. Drag and drop the `cloudspan` folder from the Finder to the Terminal. You should see the file path leading to your `cloudspan` folder appear. Now press enter to navigate to the folder.
 
     OR
     - Open **Terminal** and type `cd` followed by the absolute path that leads to your `cloudspan` folder. Press enter. 

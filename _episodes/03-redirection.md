@@ -149,6 +149,8 @@ All of these sequences were printed to our terminal screen, but in order to work
 We can do this with something called "redirection". The idea is that we are taking what would ordinarily be printed to the terminal screen and redirecting it to another location.
 In our case, we want to print this information to a file so that we can look at it later and use other commands to analyse this data.
 
+### Redirecting output to a file --- the `>` command
+
 The command for redirecting output to a file is `>`.
 
 Let's try out this command and copy all the records (including all four lines of each record) in our FASTQ files that contain 'NNN' to another file called `bad_reads.txt`. The new flag `--no-group-separator` stops grep from putting a dashed line (--) between matches. The reason this is necessary will become apparent shortly.
@@ -158,19 +160,15 @@ $ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq > bad_reads.txt
 ~~~
 {: .bash}
 
-> ## File extensions
->
-> You might be confused about why we're naming our output file with a `.txt` extension. After all,
-> it will be holding FASTQ formatted data that we're extracting from our FASTQ files. Won't it
-> also be a FASTQ file? The answer is, yes - it will be a FASTQ file and it would make sense to
-> name it with a `.fastq` extension. However, using a `.fastq` extension will lead us to problems
-> when we move to using wildcards later in this episode. We'll point out where this becomes
-> important. For now, it's good that you're thinking about file extensions!
->
-{: .callout}
-
 The prompt should sit there a little bit, and then it should look like nothing
 happened. But type `ls`. You should see a new file called `bad_reads.txt`.
+
+> ## File extensions
+>
+> You might be confused about why we're naming our output file with a `.txt` extension. After all, it will be holding FASTQ formatted data that we're extracting from our FASTQ files. Won't it also be a FASTQ file? The answer is, yes - it will be a FASTQ file and it would make sense to name it with a `.fastq` extension. However, using an extension such as `.txt` makes it easy to distinguish the files you may generate through some exploratory processing, as the one we just made with the `grep` program, from the original sequencing files of your project. So you can easily select all the files with a specific extension for further processing using the wildcard `*` character, for example:  `grep .. *.fastq` or `mv *.txt newlocation`.
+{: .callout}
+
+### Counting number of lines in files --- the `wc` program
 
 We can check the number of lines in our new file using a command called `wc`. `wc` stands for **word count**. This command counts the number of words, lines, and characters in a file. The FASTQ file may change over time, so given the potential for updates, make sure the output of your `wc` command below matches your instructor's output.
 
@@ -234,6 +232,7 @@ The `--no-group-separator` flag used above prevents grep from adding unnecessary
 > {: .solution}
 {: .challenge}
 
+### The command `>` redirects and overwrites
 We might want to search multiple FASTQ files for sequences that match our search pattern.
 However, we need to be careful, because each time we use the `>` command to redirect output
 to a file, the new output will replace the output that was already present in the file.
@@ -264,8 +263,9 @@ $ wc -l bad_reads.txt
 
 Here, the output of our second  call to `wc` shows that we no longer have any lines in our `bad_reads.txt` file. This is because the second string we searched (`NNNNNNNNNN`) does not match any strings in the file. So our file was overwritten and is now empty.
 
-We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will
-append new output to the end of a file, rather than overwriting it.
+### The command `>>` redirects and appends
+
+We can avoid overwriting our files by using the command `>>`. `>>` is known as the "append redirect" and will append new output to the end of a file, rather than overwriting it.
 
 ~~~
 $ grep -B1 -A2 NNN --no-group-separator ERR4998593_1.fastq > bad_reads.txt
@@ -290,6 +290,8 @@ $ wc -l bad_reads.txt
 {: .output}
 
 The output of our second call to `wc` shows that we have not overwritten our original data.
+
+### Redirecting output as input to other program --- the pipe `|` command
 
 Since we might have multiple different criteria we want to search for, creating a new output file each time has the potential to clutter up our workspace. 
 We also thus far haven't been interested in the actual contents of those files, only in the number of reads that we've found. We created the files to store the reads and then counted the lines in the file to see how many reads matched our criteria. 

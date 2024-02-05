@@ -346,7 +346,7 @@ $ mkdir backup
 ~~~
 {: .bash}
 
-### Moving / Renaming
+### Moving / Renaming files and directories
 
 We can now move our backup file to this directory. We can move files around using the command `mv`:
 
@@ -375,7 +375,7 @@ ERR4998593_1_backup.fastq
 ~~~
 {: .output}
 
-### Removing
+### Removing files and directories
 
 You can delete or remove files with the `rm` command:
 
