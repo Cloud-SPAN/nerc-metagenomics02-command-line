@@ -185,7 +185,7 @@ Over time, it will become easier for you to keep a mental note of the structure 
 >
 > > ## Solution
 > > ~~~
-> > ERR5000342_sub15.fastq
+> > ERR5000342_sub12.fastq
 > > ~~~
 > > {: .output}
 > > 
