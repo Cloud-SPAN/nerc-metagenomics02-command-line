@@ -150,7 +150,7 @@ You will be glad you learned this when you need to re-run very complicated comma
 For more information on advanced usage of `history`, read section 9.3 of
 [Bash manual](https://www.gnu.org/software/bash/manual/html_node/index.html).
 
-## Examining Files
+## Examining Files --- the `less` program
 
 We now know how to switch directories, run programs, and look at the
 contents of directories, but how do we look at the contents of files?
@@ -236,10 +236,13 @@ forward to the next instance of this sequence motif. If you instead type `?` and
 
 Remember, the `man` program actually uses `less` internally and therefore uses the same commands, so you can search documentation using "/" as well!
 
+### Other programs to look into files: `cat`, `more`, `head`, and `tail`  
+
 Another way to look at files is using the command `cat`. This command prints out the entire contents of the file to the console. In large files, like the ones we're working with today, this can take a long time and should generally be avoided. For small files, it can be a useful tool.
 
-There's another final way that we can look at files, and in this case, just look at part of them. This can be particularly useful if we just want
-to see the beginning or end of the file, or see how it's formatted.
+The `more` command prints to the console only as much content of a file as it fits in the screen, and waits for you to press the space bar to print the following portion of the file likweise, and so on until either the last portion of the file is printed or you press the `q` key (for quit) to exit `more`.
+
+There's another final way that we can look at files, and in this case, just look at part of them. This can be particularly useful if we just want to see the beginning or end of the file, or see how it's formatted.
 
 The commands are `head` and `tail` and they let you look at the beginning and end of a file, respectively.
 
